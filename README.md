@@ -14,13 +14,13 @@ We provide MATLAB code for preparing the training and test data. Please first do
 ## Demo 
 To produce the results in the paper, run:
 
-'''
+```
 python test_pretrained.py --model_path ./pretrained_model/HCI_2x2-7x7.pth   --test_dataset HCI --data_path ./LFData/test_HCI.h5 --angular_out 7 --angular_in 2 --crop 1 --save_img 1
-'''
+```
 
 ## Training
 To re-train the model, run:
 
-'''
+```
 python train.py --lr 1e-4 --step 500 --epi 1.0 --patch_size 96 --num_cp 10   --layer_num 4  --angular_out 7 --angular_in 2 --dataset HCI --dataset_path ./LFData/train_HCI.h5
-'''
+```
