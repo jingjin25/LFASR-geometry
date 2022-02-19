@@ -1,26 +1,23 @@
 # LFASR-geometry
 PyTorch implementation of **AAAI 2020** paper: **Learning Light Field Angular Super-Resolution via a Geometry-Aware Network**.
 
-[[paper]](https://www.aaai.org/Papers/AAAI/2020GB/AAAI-JinJ.8502.pdf)
+[[paper]](https://dl.acm.org/doi/10.1145/3394171.3413585)
 
 ## Requirements
 - Python 3.6
-- PyTorch 1.1
+- PyTorch 1.3
 - Matlab (for training/test data generation)
 
 ## Dataset
 We provide MATLAB code for preparing the training and test data. Please first download light field datasets, and put them into corresponding folders in `LFData`.
 
-## Demo 
-To produce the results in the paper, run:
-
-```
-python test_pretrained.py --model_path ./pretrained_model/HCI_2x2-7x7.pth   --test_dataset HCI --data_path ./LFData/test_HCI.h5 --angular_out 7 --angular_in 2 --crop 1 --save_img 1
-```
 
 ## Training
 To re-train the model, run:
 
 ```
-python train.py --lr 1e-4 --step 500 --epi 1.0 --patch_size 96 --num_cp 10   --layer_num 4  --angular_out 7 --angular_in 2 --dataset HCI --dataset_path ./LFData/train_HCI.h5
+python train_fusionNet.py --dataset HCI --angular_num 9 --scale 4 --num_cp 10 --patch_size 64 --lr 1e-4  --step 500
+python train_fusionNet.py --dataset Lytro --angular_num 8 --scale 4 --num_cp 10 --patch_size 64 --lr 1e-4  --step 200
+python train_fusionNet.py --dataset HCI --angular_num 9 --scale 8 --num_cp 10 --patch_size 64 --lr 1e-5  --step 1000
+python train_fusionNet.py --dataset Lytro --angular_num 8 --scale 8 --num_cp 10 --patch_size 64 --lr 1e-5  --step 200
 ```
